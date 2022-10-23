@@ -58,7 +58,7 @@ bool sobreLinea(Punto punto, Linea linea) { //Complejidad Computacional: O(1), e
     }
 }
 
-//Función que determina la Orientación/Dirección dados tres puntos, recibe los Tres Puntos, retorna un 0 si es Colinear, 1 si es Dextrógiro (Al sentido del Reloj), 2 si es Levógiro ( Al sentido ContraReloj). 
+//Función que determina la Orientación/Dirección dados tres puntos, recibe los Tres Puntos, retorna un 0 si es Collinear, 1 si es Dextrógiro (Al sentido del Reloj), 2 si es Levógiro ( Al sentido ContraReloj). 
 int direccion(Punto puntoA, Punto puntoB, Punto puntoC) { //Complejidad Computacional: O(1), es una ejecución lineal en el contenido de la función.
     
     int valor;
