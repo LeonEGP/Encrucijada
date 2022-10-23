@@ -167,6 +167,8 @@ int main() { //Complejidad Computacional: O(1), es una ejecución lineal en el c
         resultados.push_back(resultado);
     }
 
+    espacio();
+
     cout << "RESULTADOS: " << endl;
 
     for (int l = 0; l < resultados.size(); l++) {
