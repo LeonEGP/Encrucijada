@@ -51,12 +51,9 @@ int multiploCercano(int numero, int base) { //Complejidad Computacional: O(1), e
 //Función que verifica si un punto está sobre una linea, recibe un Punto y una Linea, retorna el valor booleano.
 bool sobreLinea(Punto punto, Linea linea) { //Complejidad Computacional: O(1), es una ejecución lineal en el contenido de la función.
 
-    Punto p;
-    Punto q;
-    Punto r;
-    q = punto;
-    p = linea.punto1;
-    r = linea.punto2;
+    Punto p = linea.punto1;
+    Punto q = punto;
+    Punto r = linea.punto2;
 
     if (q.x <= max(p.x, r.x) && q.x >= min(p.x, r.x) && q.y <= max(p.y, r.y) && q.y >= min(p.y, r.y)) {
         return true;
@@ -85,37 +82,24 @@ int direccion(Punto p, Punto q, Punto r) { //Complejidad Computacional: O(1), es
 //Función que determina si dos líneas se intersectan, recibe Dos Lineas y retorna el valor booleano.
 bool intersecta(Linea linea1, Linea linea2) { //Complejidad Computacional: O(1), es una ejecución lineal en el contenido de la función.
 
-    Punto p1; 
-    Punto q1;
-    Punto p2;
-    Punto q2;
-    int direccion1;
-    int direccion2;
-    int direccion3;
-    int direccion4;
-
-    p1 = linea1.punto1;
-    q1 = linea1.punto2;
-    p2 = linea2.punto1;
-    q2 = linea2.punto2;
-    direccion1 = direccion(p1, q1, p2);
-    direccion2 = direccion(p1, q1, q2);
-    direccion3 = direccion(p2, q2, p1);
-    direccion4 = direccion(p2, q2, q1);
+    int direccion1 = direccion(linea1.punto1, linea1.punto2, linea2.punto1);
+    int direccion2 = direccion(linea1.punto1, linea1.punto2, linea2.punto2);
+    int direccion3 = direccion(linea2.punto1, linea2.punto2, linea1.punto1);
+    int direccion4 = direccion(linea2.punto1, linea2.punto2, linea1.punto2);
 
     if (direccion1 != direccion2 && direccion3 != direccion4) {
         return true;
     }
-    else if (direccion1 == 0 && sobreLinea(p2, linea1)) {
+    else if (direccion1 == 0 && sobreLinea(linea2.punto1, linea1)) {
         return true;
     }
-    else if (direccion2 == 0 && sobreLinea(q2, linea1)) {
+    else if (direccion2 == 0 && sobreLinea(linea2.punto2, linea1)) {
         return true;
     }
-    else if (direccion3 == 0 && sobreLinea(p1, linea2)) {
+    else if (direccion3 == 0 && sobreLinea(linea1.punto1, linea2)) {
         return true;
     }
-    else if (direccion4 == 0 && sobreLinea(q1, linea2)) {
+    else if (direccion4 == 0 && sobreLinea(linea1.punto2, linea2)) {
         return true;
     }
     else {
