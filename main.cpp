@@ -50,19 +50,26 @@ int multiploCercano(int numero, int base) { //Complejidad Computacional: O(1), e
 
 //Función que verifica si un punto está sobre una linea, recibe un Punto y una Linea, retorna el valor booleano.
 bool sobreLinea(Punto punto, Linea linea) { //Complejidad Computacional: O(1), es una ejecución lineal en el contenido de la función.
-    if (punto.x <= max(linea.punto1.x, linea.punto2.x) && punto.x >= min(linea.punto1.x, linea.punto2.x) && punto.y <= max(linea.punto1.y, linea.punto2.y) && punto.y >= min(linea.punto1.y, linea.punto2.y)) {
+
+    Punto p;
+    Punto q;
+    Punto r;
+    q = punto;
+    p = linea.punto1;
+    r = linea.punto2;
+
+    if (q.x <= max(p.x, r.x) && q.x >= min(p.x, r.x) && q.y <= max(p.y, r.y) && q.y >= min(p.y, r.y)) {
         return true;
     }
-    else {
-        return false;
-    }
+
+    return false;
 }
 
 //Función que determina la Orientación/Dirección dados tres puntos, recibe los Tres Puntos, retorna un 0 si es Collinear, 1 si es Dextrógiro (Al sentido del Reloj), 2 si es Levógiro ( Al sentido ContraReloj). 
-int direccion(Punto puntoA, Punto puntoB, Punto puntoC) { //Complejidad Computacional: O(1), es una ejecución lineal en el contenido de la función.
-    
+int direccion(Punto p, Punto q, Punto r) { //Complejidad Computacional: O(1), es una ejecución lineal en el contenido de la función.
+
     int valor;
-    valor = (puntoB.y - puntoA.y) * (puntoC.x - puntoB.x) - (puntoB.x - puntoA.x) * (puntoC.y - puntoB.y);
+    valor = (q.y - p.y) * (r.x - q.x) - (q.x - p.x) * (r.y - q.y);
 
     if (valor == 0) {
         return 0;
@@ -78,28 +85,37 @@ int direccion(Punto puntoA, Punto puntoB, Punto puntoC) { //Complejidad Computac
 //Función que determina si dos líneas se intersectan, recibe Dos Lineas y retorna el valor booleano.
 bool intersecta(Linea linea1, Linea linea2) { //Complejidad Computacional: O(1), es una ejecución lineal en el contenido de la función.
 
+    Punto p1; 
+    Punto q1;
+    Punto p2;
+    Punto q2;
     int direccion1;
     int direccion2;
     int direccion3;
     int direccion4;
-    direccion1 = direccion(linea1.punto1, linea1.punto2, linea2.punto1);
-    direccion2 = direccion(linea1.punto1, linea1.punto2, linea1.punto2);
-    direccion3 = direccion(linea2.punto1, linea1.punto2, linea1.punto1);
-    direccion4 = direccion(linea2.punto1, linea1.punto2, linea2.punto2);
 
-    if (direccion1 != direccion2 && direccion3 != direccion4){
+    p1 = linea1.punto1;
+    q1 = linea1.punto2;
+    p2 = linea2.punto1;
+    q2 = linea2.punto2;
+    direccion1 = direccion(p1, q1, p2);
+    direccion2 = direccion(p1, q1, q2);
+    direccion3 = direccion(p2, q2, p1);
+    direccion4 = direccion(p2, q2, q1);
+
+    if (direccion1 != direccion2 && direccion3 != direccion4) {
         return true;
     }
-    else if (direccion1 == 0 && sobreLinea(linea2.punto1, linea1)) {
+    else if (direccion1 == 0 && sobreLinea(p2, linea1)) {
         return true;
     }
-    else if (direccion2 == 0 && sobreLinea(linea2.punto2, linea1)) {
+    else if (direccion2 == 0 && sobreLinea(q2, linea1)) {
         return true;
     }
-    else if (direccion3 == 0 && sobreLinea(linea1.punto1, linea2)) {
+    else if (direccion3 == 0 && sobreLinea(p1, linea2)) {
         return true;
     }
-    else if (direccion4 == 0 && sobreLinea(linea1.punto2, linea2)) {
+    else if (direccion4 == 0 && sobreLinea(q1, linea2)) {
         return true;
     }
     else {
@@ -109,7 +125,7 @@ bool intersecta(Linea linea1, Linea linea2) { //Complejidad Computacional: O(1),
 
 //Función main que ejecuta el programa, no recibe parámetros, retorna un entero [return 0].
 int main() { //Complejidad Computacional: O(1), es una ejecución lineal en el contenido de la función. Dentro de este contenido lineal, suceden 3 ciclos for independientes entre si, solo dependientes de la cantidad de puntos n, siendo estos ciclos de complejidad O(n); sin embargo, es meramente auxiliar para la ejecución del código. La Complejidad de los Algoritmos en las Funciones desarrolladas son siempre O(1).
-    
+
     int n; //Cantidad de Puntos
     vector <Punto> puntos;
     vector <Linea> lineas;
@@ -126,7 +142,7 @@ int main() { //Complejidad Computacional: O(1), es una ejecución lineal en el c
         cout << "Valor n ajustado a 4." << endl;
         espacio();
     }
-    else if (multiplicidad(n,4) == false) {
+    else if (multiplicidad(n, 4) == false) {
         cout << "Cantidad de puntos diferente a los valores múltiplos de 4." << endl;
         n = multiploCercano(n, 4);
         cout << "Valor n ajustado a " << n << "." << endl;
@@ -137,7 +153,7 @@ int main() { //Complejidad Computacional: O(1), es una ejecución lineal en el c
     espacio();
 
     for (int i = 0; i < n; i++) { //Complejidad Computacional: O(n), siendo n la cantidad de puntos.
-    
+
         int x;
         int y;
         Punto punto;
@@ -154,16 +170,16 @@ int main() { //Complejidad Computacional: O(1), es una ejecución lineal en el c
 
     espacio();
 
-    for (int j = 0; j < puntos.size(); j+=2) { //Complejidad Computacional: O(n), siendo n la cantidad de puntos.
+    for (int j = 0; j < puntos.size(); j += 2) { //Complejidad Computacional: O(n), siendo n la cantidad de puntos.
         Linea linea;
         linea.punto1 = puntos[j];
-        linea.punto2= puntos[j+1];
+        linea.punto2 = puntos[j + 1];
         lineas.push_back(linea);
     }
 
-    for (int k = 0; k < lineas.size(); k+=2) { //Complejidad Computacional: O(n), siendo n la cantidad de lineas.
+    for (int k = 0; k < lineas.size(); k += 2) { //Complejidad Computacional: O(n), siendo n la cantidad de lineas.
         bool resultado;
-        resultado = (intersecta(lineas[k], lineas[k+1]));
+        resultado = (intersecta(lineas[k], lineas[k + 1]));
         resultados.push_back(resultado);
     }
 
@@ -175,7 +191,7 @@ int main() { //Complejidad Computacional: O(1), es una ejecución lineal en el c
         if (resultados[l] == true) {
             cout << "True" << endl;
         }
-        else if (resultados[l] == false){
+        else if (resultados[l] == false) {
             cout << "False" << endl;
         }
     }
