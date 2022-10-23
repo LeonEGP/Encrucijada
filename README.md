@@ -1,0 +1,2 @@
+# Encrucijada
+Actividad 4.1 Implementación Intersección y proximidad aplicando geometría computacional.
