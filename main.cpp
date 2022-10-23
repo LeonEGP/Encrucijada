@@ -108,7 +108,7 @@ bool intersecta(Linea linea1, Linea linea2) { //Complejidad Computacional: O(1),
 }
 
 //Función main que ejecuta el programa, no recibe parámetros, retorna un entero [return 0].
-int main() { //Complejidad Computacional: O(1), es una ejecución lineal en el contenido de la función. Dentro de este contenido lineal, suceden 3 ciclos for independientes entre si, solo dependientes de la cantidad de puntos n, siendo estos ciclos de complejidad O(n); sin embargo, es meramente auxiliar para la ejecución del código. La Complejdiad de los Algoritmos en las Funciones desarrolladas son siempre O(1).
+int main() { //Complejidad Computacional: O(1), es una ejecución lineal en el contenido de la función. Dentro de este contenido lineal, suceden 3 ciclos for independientes entre si, solo dependientes de la cantidad de puntos n, siendo estos ciclos de complejidad O(n); sin embargo, es meramente auxiliar para la ejecución del código. La Complejidad de los Algoritmos en las Funciones desarrolladas son siempre O(1).
     
     int n; //Cantidad de Puntos
     vector <Punto> puntos;
