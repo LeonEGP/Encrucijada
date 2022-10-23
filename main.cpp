@@ -22,12 +22,12 @@ struct Linea {
 };
 
 //Función que imprime en consola un salto de línea, no recibe parámetros y no tiene valor de retorno.
-void espacio() { //Complejidad Computacional: O(1).
+void espacio() { //Complejidad Computacional: O(1), es una ejecución lineal en el contenido de la función.
     cout << endl;
 }
 
 //Función que verifica la multiplicidad entre dos números, recibe dos valores enteros y retorna un valor booleano.
-bool multiplicidad(int numero, int multiplo) { //Complejidad Computacional: O(1).
+bool multiplicidad(int numero, int multiplo) { //Complejidad Computacional: O(1), es una ejecución lineal en el contenido de la función.
     if (numero % multiplo == 0) {
         return true;
     }
@@ -37,7 +37,7 @@ bool multiplicidad(int numero, int multiplo) { //Complejidad Computacional: O(1)
 }
 
 //Función que encuentra el múltiplo más cercano a un número, recibe un Entero como número y un Entero como base, retorna el múltiplo entero más cercano. 
-int multiploCercano(int numero, int base) { //Complejidad Computacional: O(1).
+int multiploCercano(int numero, int base) { //Complejidad Computacional: O(1), es una ejecución lineal en el contenido de la función.
 
     numero = numero + base / 2;
     numero = numero - (numero % base);
@@ -49,7 +49,7 @@ int multiploCercano(int numero, int base) { //Complejidad Computacional: O(1).
 }
 
 //Función que verifica si un punto está sobre una linea, recibe un Punto y una Linea, retorna el valor booleano.
-bool sobreLinea(Punto punto, Linea linea) { // //Complejidad Computacional: O(1).
+bool sobreLinea(Punto punto, Linea linea) { //Complejidad Computacional: O(1), es una ejecución lineal en el contenido de la función.
     if (punto.x <= max(linea.punto1.x, linea.punto2.x) && punto.x >= min(linea.punto1.x, linea.punto2.x) && punto.y <= max(linea.punto1.y, linea.punto2.y) && punto.y >= min(linea.punto1.y, linea.punto2.y)) {
         return true;
     }
@@ -59,7 +59,7 @@ bool sobreLinea(Punto punto, Linea linea) { // //Complejidad Computacional: O(1)
 }
 
 //Función que determina la Orientación/Dirección dados tres puntos, recibe los Tres Puntos, retorna un 0 si es Colinear, 1 si es Dextrógiro (Al sentido del Reloj), 2 si es Levógiro ( Al sentido ContraReloj). 
-int direccion(Punto puntoA, Punto puntoB, Punto puntoC) { //Complejidad Computacional: O(1).
+int direccion(Punto puntoA, Punto puntoB, Punto puntoC) { //Complejidad Computacional: O(1), es una ejecución lineal en el contenido de la función.
     
     int valor;
     valor = (puntoB.y - puntoA.y) * (puntoC.x - puntoB.x) - (puntoB.x - puntoA.x) * (puntoC.y - puntoB.y);
@@ -76,7 +76,7 @@ int direccion(Punto puntoA, Punto puntoB, Punto puntoC) { //Complejidad Computac
 }
 
 //Función que determina si dos líneas se intersectan, recibe Dos Lineas y retorna el valor booleano.
-bool intersecta(Linea linea1, Linea linea2) { //Complejidad Computacional: O(1).
+bool intersecta(Linea linea1, Linea linea2) { //Complejidad Computacional: O(1), es una ejecución lineal en el contenido de la función.
 
     int direccion1;
     int direccion2;
@@ -108,7 +108,7 @@ bool intersecta(Linea linea1, Linea linea2) { //Complejidad Computacional: O(1).
 }
 
 //Función main que ejecuta el programa, no recibe parámetros, retorna un entero [return 0].
-int main() { //Complejidad Computacional: O(1).
+int main() { //Complejidad Computacional: O(1), es una ejecución lineal en el contenido de la función. Dentro de este contenido lineal, suceden 3 ciclos for independientes entre si, solo dependientes de la cantidad de puntos n, siendo estos ciclos de complejidad O(n); sin embargo, es meramente auxiliar para la ejecución del código. La Complejdiad de los Algoritmos en las Funciones desarrolladas son siempre O(1).
     
     int n; //Cantidad de Puntos
     vector <Punto> puntos;
